@@ -4,17 +4,19 @@ A reusable React Native template using Expo with TypeScript, navigation, and bes
 
 ## Features
 
-- 🚀 **Expo Router** for file-based routing
-- 📱 **TypeScript** for type safety
-- 🎯 **Zustand** for state management
-- 🔄 **React Query** for data fetching
-- 📢 **Expo Notifications** for push notifications
-- 🎨 **Reusable UI Components** (Button, etc.)
-- 📁 **Scalable Folder Structure**
-- 🔧 **ESLint** configuration
-- 📋 **Pre-configured** for development and production
+- **Expo Router** for file-based routing
+- **TypeScript** for type safety
+- **Zustand** for state management
+- **React Query** for data fetching
+- **Expo Notifications** for push notifications
+- **Reusable UI Components** (Button, etc.)
+- **Scalable Folder Structure**
+- **ESLint** configuration
+- **Pre-configured** for development and production
 
 ## Quick Start
+
+This project uses [Bun](https://bun.sh) as the package manager. Install Bun if needed: `curl -fsSL https://bun.sh/install | bash`
 
 ### Using GitHub Template
 
@@ -26,19 +28,19 @@ A reusable React Native template using Expo with TypeScript, navigation, and bes
    ```
 3. **Install dependencies:**
    ```bash
-   npm install
+   bun install
    ```
 4. **Start the development server:**
    ```bash
-   npm start
+   bun start
    ```
 
 ### Alternative: Manual Setup
 
 ```bash
-npx create-expo-app@latest MyApp --template blank-typescript
+bunx create-expo-app@latest MyApp --template blank-typescript
 cd MyApp
-npm install
+bun install
 # Copy the contents of this template over your new project
 ```
 
@@ -70,11 +72,22 @@ my-app/
 
 ## Key Dependencies
 
+- **Expo SDK**: 55 (React Native 0.83, React 19.2)
 - **Navigation**: `expo-router`, `react-native-screens`, `expo-linking`
 - **State Management**: `zustand`
 - **Data Fetching**: `@tanstack/react-query`
 - **Notifications**: `expo-notifications`
 - **Development**: `eslint-config-expo`
+
+### SDK 55 Migration Notes
+
+This template uses **Expo SDK 55**, which includes:
+
+- **New Architecture only** — Legacy Architecture support was removed
+- **React Native 0.83** and **React 19.2**
+- **Edge-to-edge** mandatory on Android 16+
+
+**Push notifications**: Expo Go on Android will throw an error when using push notifications. Use a [development build](https://docs.expo.dev/develop/development-builds/introduction/) for push notification development.
 
 ## Usage Examples
 
@@ -130,19 +143,23 @@ import { Link } from 'expo-router';
 
 ## Development
 
+### Environment
+
+Store API keys and secrets in `.env` files (gitignored). Never commit sensitive data.
+
 ### Running the App
 
 ```bash
-npm start          # Start Expo development server
-npm run android    # Run on Android
-npm run ios        # Run on iOS
-npm run web        # Run on web
+bun start          # Start Expo development server
+bun run android   # Run on Android
+bun run ios       # Run on iOS
+bun run web       # Run on web
 ```
 
 ### Building
 
 ```bash
-npm run build      # Build with EAS
+bun run build     # Build with EAS
 eas build --profile preview  # Preview build
 eas build --profile production  # Production build
 ```
@@ -150,7 +167,7 @@ eas build --profile production  # Production build
 ### Linting
 
 ```bash
-npx eslint .       # Run ESLint
+bunx eslint .     # Run ESLint
 ```
 
 ## Customization
@@ -175,24 +192,24 @@ npx eslint .       # Run ESLint
 This repository is designed to be used as a GitHub template. To use it:
 
 1. **Go to [this repository on GitHub](https://github.com/mwijanarko1/Expo-RN-Template)**
-2. **Click the green "Use this template" button**
+2. **Click the "Use this template" button**
 3. **Create a new repository** from this template
 4. **Clone and start developing!**
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
 cd YOUR_REPO_NAME
-npm install
-npm start
+bun install
+bun start
 ```
 
 ### Template Benefits
 
-- ✅ **Clean commit history** - Start with a fresh repository
-- ✅ **Proper .gitignore** - No unnecessary files committed
-- ✅ **Ready-to-use structure** - All folders and files set up
-- ✅ **Best practices included** - ESLint, TypeScript, state management
-- ✅ **Documentation provided** - Clear setup and usage instructions
+- **Clean commit history** - Start with a fresh repository
+- **Proper .gitignore** - No unnecessary files committed
+- **Ready-to-use structure** - All folders and files set up
+- **Best practices included** - ESLint, TypeScript, state management
+- **Documentation provided** - Clear setup and usage instructions
 
 ## Author
 

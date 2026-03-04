@@ -1,36 +1,51 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { Link } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { COLORS, SPACING, FONT_SIZES } from '@/constants';
 
 export default function ModalScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Modal Screen</Text>
-      <Text style={styles.text}>This is a modal screen example.</Text>
-      <Link href="/" style={styles.link}>
-        Close Modal
-      </Link>
-    </View>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Modal Screen</Text>
+        <Text style={styles.text}>This is a modal screen example.</Text>
+        <Link
+          href="/"
+          style={styles.link}
+          accessibilityLabel="Close modal and return to Home"
+          accessibilityRole="link"
+        >
+          Close Modal
+        </Link>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: COLORS.background,
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
+    padding: SPACING.md,
   },
   title: {
-    fontSize: 24,
+    fontSize: FONT_SIZES.xxl,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: SPACING.sm,
+    color: COLORS.text,
   },
   text: {
-    fontSize: 16,
-    marginBottom: 20,
+    fontSize: FONT_SIZES.md,
+    marginBottom: SPACING.md,
+    color: COLORS.textSecondary,
   },
   link: {
-    color: 'blue',
-    fontSize: 16,
+    color: COLORS.primary,
+    fontSize: FONT_SIZES.md,
   },
 });

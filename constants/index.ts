@@ -28,8 +28,13 @@ export const FONT_SIZES = {
   xxxl: 32,
 } as const;
 
+/**
+ * API base URL is read from the EXPO_PUBLIC_API_BASE_URL environment variable.
+ * Set this in your `.env` file before running the app.
+ * Example: EXPO_PUBLIC_API_BASE_URL=https://api.myapp.com
+ */
 export const API_ENDPOINTS = {
-  baseURL: 'https://api.example.com',
+  baseURL: process.env['EXPO_PUBLIC_API_BASE_URL'] ?? '',
   users: '/users',
   posts: '/posts',
 } as const;
