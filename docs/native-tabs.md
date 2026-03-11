@@ -8,6 +8,74 @@ _Learn how to use the native tabs layout in Expo Router._
 
 Tabs are a common way to navigate between different sections of an app. In Expo Router, you can use different tab layouts, depending on your needs. This guide covers the native tabs. Unlike the [other tabs layout](https://docs.expo.dev/router/advanced/tabs/#multiple-tab-layouts), native tabs use the native system tab bar.
 
+---
+
+## Project template (Double Down standard)
+
+**Use this setup for all native tabs in this codebase.** It ensures content scrolls behind the tab bar and is visible through the translucent bar (liquid glass on iOS).
+
+### Layout file (`app/(app)/(tabs)/_layout.tsx`)
+
+- Set `backgroundColor="transparent"` on `NativeTabs` so the tab bar container is transparent.
+- Set `contentStyle={{ backgroundColor: 'transparent' }}` on each `NativeTabs.Trigger` so the content area is transparent and cards/content can be seen underneath the tab bar.
+
+```tsx app/(app)/(tabs)/_layout.tsx
+import { NativeTabs } from 'expo-router/unstable-native-tabs';
+
+export default function TabLayout() {
+  return (
+    <NativeTabs backgroundColor="transparent">
+      <NativeTabs.Trigger name="home" contentStyle={{ backgroundColor: 'transparent' }}>
+        <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf="house.fill" md="home" />
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="store" contentStyle={{ backgroundColor: 'transparent' }}>
+        <NativeTabs.Trigger.Label>Store</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf="cart.fill" md="shopping_cart" />
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="profile" contentStyle={{ backgroundColor: 'transparent' }}>
+        <NativeTabs.Trigger.Label>Profile</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf="person.fill" md="person" />
+      </NativeTabs.Trigger>
+    </NativeTabs>
+  );
+}
+```
+
+### Tab screen files
+
+- Use `SafeAreaView` with `edges={['top', 'left', 'right']}` (exclude bottom) so content extends behind the tab bar and scrolls underneath it.
+- Set `collapsable={false}` on the wrapper so scroll-to-top works when tapping the active tab.
+
+```tsx app/(app)/(tabs)/home.tsx (and store.tsx, profile.tsx)
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+export default function HomeScreen() {
+  const colors = useTheme();
+
+  return (
+    <SafeAreaView
+      collapsable={false}
+      edges={['top', 'left', 'right']}
+      style={[styles.safeArea, { backgroundColor: colors.background }]}
+    >
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        {/* Screen content */}
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
+```
+
+**Checklist for new tab screens:**
+
+- [ ] `NativeTabs` has `backgroundColor="transparent"`
+- [ ] Each `NativeTabs.Trigger` has `contentStyle={{ backgroundColor: 'transparent' }}`
+- [ ] Tab screens use `SafeAreaView` with `edges={['top', 'left', 'right']}`
+- [ ] Tab screens use `collapsable={false}` on the root wrapper
+
+---
+
 For other tab layouts see:
 
 [Custom tabs](https://docs.expo.dev/router/advanced/custom-tabs/)
